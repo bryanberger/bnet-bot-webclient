@@ -2,7 +2,7 @@
 
 Built with:
 
-- React
+- React (CRA)
 - Emotion
 - Typescript
 
