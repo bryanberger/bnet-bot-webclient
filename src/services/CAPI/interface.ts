@@ -27,6 +27,8 @@ export declare namespace CAPI {
     | 'Botapichat.KickUserResponse'
     | 'Botapichat.SendSetModeratorResponse'
 
+  export type AllCommands = RequestCommands | ResponseCommands
+
   export type MessageTypes =
     | 'Whisper'
     | 'Channel'
@@ -42,7 +44,6 @@ export declare namespace CAPI {
     | 'MuteWhisper'
 
   export type Attributes = 'ProgramId' | 'Rate' | 'Rank' | 'Wins'
-
   // export type Games =
   //   | 'chat'
   //   | 'starcraftj'
@@ -61,6 +62,23 @@ export declare namespace CAPI {
       area: number
       code: number
     }
+  }
+
+  export interface Payload {
+    user_id?: number
+    toon_name?: string
+    message?: string
+    type?: MessageTypes
+    flag?: Flags[]
+    attribute?: Attributes[]
+    channel?: string
+  }
+
+  export interface Data {
+    command: AllCommands
+    requestId: number
+    payload: Payload
+    status?: Status
   }
 
   export interface BaseRequest {
@@ -82,27 +100,21 @@ export declare namespace CAPI {
   // Botapiauth.AuthenticateResponse
   export interface AuthenticateResponse extends BaseResponse, Status {
     command: 'Botapiauth.AuthenticateResponse'
-    payload: {}
   }
 
   // Botapichat.ConnectRequest
   export interface ConnectRequest extends BaseRequest {
     command: 'Botapichat.ConnectRequest'
-    payload: {}
   }
 
   // Botapichat.ConnectResponse
   export interface ConnectResponse extends BaseResponse, Status {
     command: 'Botapichat.ConnectResponse'
-    payload: {}
   }
 
   // Botapichat.ConnectEventRequest
   export interface ConnectEventRequest extends BaseRequest {
     command: 'Botapichat.ConnectEventRequest'
-    payload: {
-      channel: string
-    }
   }
 
   // Botapichat.DisconnectRequest
@@ -124,6 +136,12 @@ export declare namespace CAPI {
   }
 
   // Botapichat.SendMessageRequest
+  export interface SendMessageRequest extends BaseRequest {
+    command: 'Botapichat.SendMessageRequest'
+    payload: {
+      message: string
+    }
+  }
   // Botapichat.SendMessageResponse
   // Botapichat.SendWhisperRequest
   // Botapichat.SendWhisperResponse
