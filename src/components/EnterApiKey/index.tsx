@@ -6,7 +6,6 @@ import React, {
   FormEvent,
 } from 'react'
 import styled from '../../theme/styled'
-import useLocalStorage from '../../hooks/useLocalStorage'
 import useClientContext from '../../providers/ClientProvider/hook'
 import { changeApiKey } from '../../providers/ClientProvider/actions'
 

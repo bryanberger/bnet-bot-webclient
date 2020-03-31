@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from '../../../../theme/styled'
+import MessageModel from '../../../../services/CAPI/models/Message'
 
 const Wrapper = styled.div`
   // display: flex;
@@ -30,19 +31,20 @@ const Sender = styled.div`
   align-items: baseline;
 `
 
-const Message = () => {
+export interface MessageProps {
+  message: MessageModel
+}
+
+const Message: React.FC<MessageProps> = ({ message }) => {
+  const { user, date, text } = message
   return (
     <Wrapper>
       <Sender>
-        <Name>DeCa</Name>
-        <Time>Today 7:34:01 PM</Time>
+        <Name>{user.name}</Name>
+        <Time>{date}</Time>
+        {/* Today 7:34:01 PM */}
       </Sender>
-      <Text>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Beatae debitis
-        repellat obcaecati minus rerum ipsam nisi aliquam expedita impedit
-        tempora. Iusto veniam commodi accusamus excepturi molestias adipisci
-        corporis, repellat modi.
-      </Text>
+      <Text>{text}</Text>
     </Wrapper>
   )
 }

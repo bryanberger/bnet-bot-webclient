@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import User from './components/User'
 import styled from '../../theme/styled'
+import useClientContext from '../../providers/ClientProvider/hook'
 
 const Wrapper = styled.div`
   grid-area: userlist;
@@ -11,6 +12,7 @@ const Wrapper = styled.div`
 `
 
 const ChannelName = styled.div`
+  min-height: 38px;
   background: ${p => p.theme.colors.accent};
   padding: ${p => p.theme.spacing[1]}px ${p => p.theme.spacing[2]}px;
   color: ${p => p.theme.colors.black};
@@ -26,40 +28,22 @@ const List = styled.div`
 `
 
 const UserList = () => {
+  const { state } = useClientContext()
+  const [channelName, setChannelName] = useState('')
+
+  useEffect(() => {
+    if (typeof state.client !== 'undefined')
+      setChannelName(`${state.client.channel} (${state.users.size})`)
+  }, [state.client, state.users])
+
   return (
     <Wrapper>
-      <ChannelName>Clan Orb (40)</ChannelName>
+      {channelName && <ChannelName>{channelName}</ChannelName>}
       <List>
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
+        {state.users &&
+          Array.from(state.users.values()).map(user => (
+            <User key={user.id} user={user} />
+          ))}
       </List>
     </Wrapper>
   )

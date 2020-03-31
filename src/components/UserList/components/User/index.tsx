@@ -1,6 +1,7 @@
 import React from 'react'
 import UserIcon from '../UserIcon'
 import styled from '../../../../theme/styled'
+import UserModel from '../../../../services/CAPI/models/User'
 
 const Wrapper = styled.div`
   display: flex;
@@ -14,11 +15,16 @@ const UserName = styled.div`
   padding-left ${p => p.theme.spacing[1]}px;
 `
 
-const User = () => {
+interface UserProps {
+  user: UserModel
+}
+
+const User: React.FC<UserProps> = ({ user }) => {
+  const { pid, name } = user
   return (
     <Wrapper>
       <UserIcon type='diablo2' />
-      <UserName>[username]</UserName>
+      <UserName>{name}</UserName>
       {/* <div>[latency]</div> */}
     </Wrapper>
   )

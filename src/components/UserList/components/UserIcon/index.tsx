@@ -40,10 +40,11 @@ const randomGame = (): UserIconProps['type'] => {
 }
 
 const UserIcon: React.FC<UserIconProps> = ({ type, ...rest }) => {
-  const icon = `${process.env.PUBLIC_URL}/assets/icons/${
-    Games[randomGame()]
-  }.bmp`
-  // const icon = `${process.env.PUBLIC_URL}/assets/icons/${Games[type]}.bmp`
+  const game = Games[type] || 'chat'
+  // const icon = `${process.env.PUBLIC_URL}/assets/icons/${
+  //   Games[randomGame()]
+  // }.bmp`
+  const icon = `${process.env.PUBLIC_URL}/assets/icons/${game}.bmp`
   return (
     <Wrapper {...rest}>
       <img src={icon} alt='' />

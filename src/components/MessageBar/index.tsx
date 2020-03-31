@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react'
 import styled from '../../theme/styled'
+import useClientContext from '../../providers/ClientProvider/hook'
 
 const Wrapper = styled.div`
   display: flex;
@@ -28,18 +29,20 @@ const Caret = styled.div`
 `
 
 const MessageBar = () => {
+  const { state } = useClientContext()
   const inputRef = useRef<HTMLInputElement>(null)
   const [message, setMessage] = useState('')
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    console.log('onSubmit')
-    if (inputRef.current) {
-      inputRef.current.value = ''
-    }
-
-    // setMessage('')
     e.preventDefault()
+    console.log('onSubmit')
+    // if (inputRef.current) {
+    //   inputRef.current.value = ''
+    // }
+    state.client?.sendMessage(message)
+    setMessage('')
   }
+
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {
     setMessage(e.currentTarget.value)
   }
