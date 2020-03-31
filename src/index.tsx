@@ -7,20 +7,14 @@ import * as serviceWorker from './serviceWorker'
 import App from './App'
 import theme from './theme'
 import global from './theme/global'
-import IClientProvider from './providers/ClientProvider/interface'
 import ClientProvider from './providers/ClientProvider'
-
-const context: IClientProvider.Context = {
-  apiKey: localStorage.getItem('cApiKey'),
-  users: [],
-  messages: [],
-}
+import { defaultContext } from './providers/ClientProvider/context'
 
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <Global styles={global} />
-      <ClientProvider context={context}>
+      <ClientProvider context={defaultContext}>
         <App />
       </ClientProvider>
     </ThemeProvider>

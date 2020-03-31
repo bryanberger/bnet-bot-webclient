@@ -12,7 +12,21 @@ const reducer = (
         ...state,
         apiKey: action.payload,
       }
-
+    case 'CHANGE_MESSAGES':
+      return {
+        ...state,
+        messages: action.payload,
+      }
+    case 'CHANGE_USERS':
+      return {
+        ...state,
+        users: action.payload,
+      }
+    case 'SET_CLIENT':
+      return {
+        ...state,
+        client: action.payload,
+      }
     default:
       return state
   }

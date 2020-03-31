@@ -1,10 +1,11 @@
 import { createContext } from 'react'
 import IClientProvider from './interface'
 
-const defaultContext: IClientProvider.Context = {
-  apiKey: '',
-  users: [],
-  messages: [],
+export const defaultContext: IClientProvider.Context = {
+  apiKey: localStorage.getItem('cApiKey'),
+  users: new Map(),
+  messages: new Set(),
+  client: undefined,
 }
 
 const ClientContext = createContext<{
