@@ -11,9 +11,14 @@ import {
   setClient,
 } from './providers/ClientProvider/actions'
 import CAPIClient from './services/CAPI'
+import useBeforeUnload from './hooks/useBeforeUnload'
 
 const App = () => {
   const { state, dispatch } = useClientContext()
+  useBeforeUnload(
+    true,
+    'Refreshing or closing this window will terminate your connection to battle.net',
+  )
   useEffect(() => {
     if (state.apiKey !== null) {
       const client = new CAPIClient(state.apiKey)

@@ -1,7 +1,7 @@
-import React from 'react'
-import UserIcon from '../UserIcon'
+import React, { useState, useEffect } from 'react'
 import styled from '../../../../theme/styled'
 import UserModel from '../../../../services/CAPI/models/User'
+import UserIcon, { UserIconProps } from '../UserIcon'
 
 const Wrapper = styled.div`
   display: flex;
@@ -20,10 +20,22 @@ interface UserProps {
 }
 
 const User: React.FC<UserProps> = ({ user }) => {
-  const { pid, name } = user
+  const { flag, pid, name } = user
+  const [controlledType, setControlledType] = useState<UserIconProps['type']>(
+    'chat',
+  )
+
+  useEffect(() => {
+    if (flag.includes('Moderator')) {
+      setControlledType('moderator')
+    } else {
+      setControlledType('unknown')
+    }
+  }, [flag])
+
   return (
     <Wrapper>
-      <UserIcon type='diablo2' />
+      <UserIcon type={controlledType} />
       <UserName>{name}</UserName>
       {/* <div>[latency]</div> */}
     </Wrapper>

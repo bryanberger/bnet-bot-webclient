@@ -1,6 +1,9 @@
+import { CAPI } from '../interface'
+
 interface UserObject {
   name: string
   id: number
+  flag: CAPI.Flags[]
   pid?: string
   rank?: string
   rate?: string
@@ -20,6 +23,10 @@ class User {
 
   public get id() {
     return this._user.id
+  }
+
+  public get flag() {
+    return this._user.flag
   }
 
   public get pid() {

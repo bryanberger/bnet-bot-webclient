@@ -30,11 +30,7 @@ class CAPIClient extends EventEmitter {
   private _messages: Set<Message>
   private _channel: string
   private _localUser?: User
-
-  // private isConnected: boolean
-  // private isReady: boolean
   private _ws: WebSocket
-  // private state: number
 
   constructor(apiKey: string) {
     super()
@@ -49,10 +45,6 @@ class CAPIClient extends EventEmitter {
     this._channel = ''
     this._users = new Map<number, User>()
     this._messages = new Set<Message>()
-
-    // this.isConnected = false
-    // this.isReady = false
-    // this.state = ReadyState.CONNECTING
 
     // init _ws
     this._ws = new WebSocket(URL)
@@ -83,15 +75,10 @@ class CAPIClient extends EventEmitter {
     } catch (e) {
       console.log(`[ERROR] Message payload`, e)
     }
-
-    // this._ws.readyState
-    // console.log('onMessage', event)
   }
 
   private onClose(event: CloseEvent) {
     console.log('onClose', event)
-    // this.isConnected = false
-    // this.isReady = false
   }
 
   private onError(event: Event) {
@@ -116,6 +103,10 @@ class CAPIClient extends EventEmitter {
     console.log('sendMessage', payload)
     // TODO: Rate limit this
     Actions.SendMessageRequest(this, payload)
+  }
+
+  public addLocalUserMessage(payload: CAPI.Payload) {
+    Actions.AddLocalUserMessage(this, payload)
   }
 
   public addUser(user: User) {

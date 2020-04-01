@@ -3,7 +3,7 @@ import styled from '../../../../theme/styled'
 
 const Games = {
   chat: 'chat',
-  operator: 'operator',
+  moderator: 'moderator',
   unknown: 'unknown',
   starcraftj: 'jstr',
   starcraft: 'star',
@@ -40,7 +40,7 @@ const randomGame = (): UserIconProps['type'] => {
 }
 
 const UserIcon: React.FC<UserIconProps> = ({ type, ...rest }) => {
-  const game = Games[type] || 'chat'
+  const game = Games[type] || 'unknown'
   // const icon = `${process.env.PUBLIC_URL}/assets/icons/${
   //   Games[randomGame()]
   // }.bmp`

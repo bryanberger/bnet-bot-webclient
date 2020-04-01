@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react'
 import styled from '../../theme/styled'
 import useClientContext from '../../providers/ClientProvider/hook'
+import { CAPI } from '../../services/CAPI/interface'
 
 const Wrapper = styled.div`
   display: flex;
@@ -35,11 +36,18 @@ const MessageBar = () => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log('onSubmit')
     // if (inputRef.current) {
     //   inputRef.current.value = ''
     // }
-    state.client?.sendMessage(message)
+    const payload: CAPI.Payload = {
+      message: message,
+      type: 'Channel',
+    }
+
+    if (state.client) {
+      state.client.sendMessage(message)
+      state.client.addLocalUserMessage(payload)
+    }
     setMessage('')
   }
 

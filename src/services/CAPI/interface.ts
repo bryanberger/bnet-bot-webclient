@@ -1,3 +1,5 @@
+import { UserIconProps } from '../../components/UserList/components/UserIcon'
+
 export declare namespace CAPI {
   export type RequestCommands =
     | 'Botapiauth.AuthenticateRequest'
@@ -57,6 +59,11 @@ export declare namespace CAPI {
   //   | 'warcraft3'
   //   | 'warcraft3tft'
 
+  export interface AttributeArray {
+    key: Attributes
+    value: UserIconProps['type']
+  }
+
   export interface Status {
     status?: {
       area: number
@@ -70,7 +77,7 @@ export declare namespace CAPI {
     message?: string
     type?: MessageTypes
     flag?: Flags[]
-    attribute?: Attributes[]
+    attribute?: AttributeArray[]
     channel?: string
   }
 
