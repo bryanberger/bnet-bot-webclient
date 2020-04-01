@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import User from './components/User'
 import styled from '../../theme/styled'
+import User from './components/User'
 import useClientContext from '../../providers/ClientProvider/hook'
 
 const Wrapper = styled.div`

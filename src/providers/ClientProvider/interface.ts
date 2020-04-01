@@ -12,7 +12,7 @@ declare namespace IClientProvider {
     apiKey: string | null
     users: Map<number, User>
     messages: Set<Message>
-    client?: CAPIClient
+    client: CAPIClient | undefined
   }
 
   export type Action =

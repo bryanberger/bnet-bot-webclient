@@ -46,22 +46,28 @@ export declare namespace CAPI {
     | 'MuteWhisper'
 
   export type Attributes = 'ProgramId' | 'Rate' | 'Rank' | 'Wins'
-  // export type Games =
-  //   | 'chat'
-  //   | 'starcraftj'
-  //   | 'starcraft'
-  //   | 'broodwars'
-  //   | 'diablo1'
-  //   | 'diablo1sw'
-  //   | 'diablo2'
-  //   | 'diablo2lod'
-  //   | 'warcraft2'
-  //   | 'warcraft3'
-  //   | 'warcraft3tft'
+
+  export enum GameStrings {
+    STAR = 'Starcraft',
+    SEXP = 'Starcraft Broodwars',
+    CHAT = 'Web Chat Client',
+    D2DV = 'Diablo 2',
+    D2XP = 'Diablo 2 Lords of Destruction',
+    DRTL = 'Diablo Retail',
+    DSHR = 'Diablo Shareware',
+    JSTR = 'Starcraft Japan',
+    W2BN = 'Warcraft 2 Battle.net Edition',
+    WAR3 = 'Warcraft 3 Rein of Chaos',
+    W3XP = 'Warcraft 3 The Frozen Throne',
+  }
+
+  export type Games = keyof typeof GameStrings
+
+  export type Icons = Games | 'Moderator'
 
   export interface AttributeArray {
     key: Attributes
-    value: UserIconProps['type']
+    value: Games
   }
 
   export interface Status {

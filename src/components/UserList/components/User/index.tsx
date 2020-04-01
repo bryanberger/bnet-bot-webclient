@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import styled from '../../../../theme/styled'
 import UserModel from '../../../../services/CAPI/models/User'
-import UserIcon, { UserIconProps } from '../UserIcon'
+import { CAPI } from '../../../../services/CAPI/interface'
+
+import UserIcon from '../UserIcon'
 
 const Wrapper = styled.div`
   display: flex;
@@ -21,21 +23,19 @@ interface UserProps {
 
 const User: React.FC<UserProps> = ({ user }) => {
   const { flag, pid, name } = user
-  const [controlledType, setControlledType] = useState<UserIconProps['type']>(
-    'chat',
-  )
+  const [iconType, setIconType] = useState<CAPI.Icons>('CHAT')
 
   useEffect(() => {
     if (flag.includes('Moderator')) {
-      setControlledType('moderator')
+      setIconType('Moderator')
     } else {
-      setControlledType('unknown')
+      setIconType(pid)
     }
-  }, [flag])
+  }, [flag, pid])
 
   return (
     <Wrapper>
-      <UserIcon type={controlledType} />
+      <UserIcon type={iconType} />
       <UserName>{name}</UserName>
       {/* <div>[latency]</div> */}
     </Wrapper>

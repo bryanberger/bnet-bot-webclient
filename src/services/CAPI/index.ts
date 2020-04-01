@@ -23,13 +23,20 @@ export enum Events {
   ON_CHAT_MESSAGE = 'message',
 }
 
+const DummyUser = new User({
+  name: '',
+  id: 0,
+  pid: 'CHAT',
+  flag: ['Moderator'],
+})
+
 class CAPIClient extends EventEmitter {
   private _apiKey: string
   private _lastRequestId: number
   private _users: Map<number, User>
   private _messages: Set<Message>
   private _channel: string
-  private _localUser?: User
+  private _localUser: User = DummyUser
   private _ws: WebSocket
 
   constructor(apiKey: string) {
@@ -126,8 +133,8 @@ class CAPIClient extends EventEmitter {
   public removeUser(user_id: number) {
     if (this._users.has(user_id)) {
       const user = this._users.get(user_id) as User
-      this.emit(Events.ON_USER_LEAVE, user)
       this._users.delete(user_id)
+      this.emit(Events.ON_USER_LEAVE, user)
     }
   }
 

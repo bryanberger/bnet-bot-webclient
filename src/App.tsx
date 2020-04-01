@@ -45,6 +45,7 @@ const App = () => {
 
       client.on('userLeave', e => {
         console.log('userLeave', e)
+        changeUsers(dispatch, client.users)
       })
 
       // const users = client.users

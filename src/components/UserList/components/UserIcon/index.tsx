@@ -1,24 +1,9 @@
 import React from 'react'
 import styled from '../../../../theme/styled'
-
-const Games = {
-  chat: 'chat',
-  moderator: 'moderator',
-  unknown: 'unknown',
-  starcraftj: 'jstr',
-  starcraft: 'star',
-  broodwars: 'sexp',
-  diablo1: 'drtl',
-  diablo1sw: 'dshr',
-  diablo2: 'd2dv',
-  diablo2lod: 'd2xp',
-  warcraft2: 'w2bn',
-  warcraft3: 'war3',
-  warcraft3tft: 'w3xp',
-}
+import { CAPI } from '../../../../services/CAPI/interface'
 
 export interface UserIconProps {
-  type: keyof typeof Games
+  type: CAPI.Icons
 }
 
 const Wrapper = styled.div`
@@ -28,23 +13,8 @@ const Wrapper = styled.div`
   }
 `
 
-const randomGame = (): UserIconProps['type'] => {
-  const game = Object.keys(Games)[
-    Math.floor(Math.random() * Object.keys(Games).length)
-  ]
-
-  if (game === 'chat' || game === 'operator' || game === 'unknown')
-    return randomGame()
-
-  return game as UserIconProps['type']
-}
-
 const UserIcon: React.FC<UserIconProps> = ({ type, ...rest }) => {
-  const game = Games[type] || 'unknown'
-  // const icon = `${process.env.PUBLIC_URL}/assets/icons/${
-  //   Games[randomGame()]
-  // }.bmp`
-  const icon = `${process.env.PUBLIC_URL}/assets/icons/${game}.bmp`
+  const icon = `${process.env.PUBLIC_URL}/assets/icons/${type}.bmp`
   return (
     <Wrapper {...rest}>
       <img src={icon} alt='' />

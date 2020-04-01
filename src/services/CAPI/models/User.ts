@@ -4,7 +4,7 @@ interface UserObject {
   name: string
   id: number
   flag: CAPI.Flags[]
-  pid?: string
+  pid: CAPI.Games
   rank?: string
   rate?: string
   wins?: string

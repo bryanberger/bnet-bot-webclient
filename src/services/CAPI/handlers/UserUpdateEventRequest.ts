@@ -7,7 +7,7 @@ const UserUpdateEventRequest = (client: CAPIClient, payload: CAPI.Payload) => {
     id: payload.user_id || 0,
     name: payload.toon_name || '',
     flag: payload.flag || [],
-    pid: (payload.attribute && payload.attribute[0].value) || 'unknown',
+    pid: (payload.attribute && payload.attribute[0].value) || 'CHAT',
   })
 
   client.addUser(user)
