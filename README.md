@@ -1,6 +1,6 @@
 # Battle.net Classic Web Bot
 
-![Demo bot](.github/demo.png?raw=true 'Demo bot')
+![Demo bot](.github/demo.png?raw=true)
 
 Built with:
 
