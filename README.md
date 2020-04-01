@@ -1,5 +1,7 @@
 # Battle.net Classic Web Bot
 
+[Live Demo](https://bnet-web-bot.netlify.com/)
+
 ![screenshot](.github/screenshot.png?raw=true)
 
 Built with:
