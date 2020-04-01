@@ -4,6 +4,7 @@ import Handlers from './handlers'
 import { CAPI } from './interface'
 import User from './models/User'
 import Message from './models/Message'
+import { GameStrings } from './utils'
 
 const URL = 'wss://connect-bot.classic.blizzard.com/v1/rpc/chat'
 // const URL = 'wss://echo.websocket.org'
@@ -27,6 +28,7 @@ const DummyUser = new User({
   name: '',
   id: 0,
   pid: 'CHAT',
+  game: GameStrings.CHAT,
   flag: ['Moderator'],
 })
 
@@ -134,6 +136,7 @@ class CAPIClient extends EventEmitter {
     if (this._users.has(user_id)) {
       const user = this._users.get(user_id) as User
       this._users.delete(user_id)
+      // Actions.AddServerMessage(client)
       this.emit(Events.ON_USER_LEAVE, user)
     }
   }

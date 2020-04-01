@@ -8,7 +8,7 @@ const colors = {
   charcoal: '#666666',
   graphite: '#999999',
   yellow: '#FFDB00',
-  teal: '#017991',
+  teal: '#089BB9',
   orange: '#FF8914',
   error: '#EB2932',
   mint: '#0FEECE',

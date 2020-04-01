@@ -34,7 +34,7 @@ const UserList = () => {
   useEffect(() => {
     if (typeof state.client !== 'undefined')
       setChannelName(`${state.client.channel} (${state.users.size})`)
-  }, [state.client, state.users])
+  }, [state])
 
   return (
     <Wrapper>
