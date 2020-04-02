@@ -10,11 +10,19 @@ const Wrapper = styled.div`
   height: 100vh;
   border: ${p => p.theme.grid.gap}px solid ${p => p.theme.colors.light};
   grid-gap: ${p => p.theme.grid.gap}px;
-  grid-template-columns: auto 320px;
-  grid-template-rows: auto 48px;
+  grid-template-columns: auto;
+  grid-template-rows: 172px auto 48px;
   grid-template-areas:
-    'chat userlist'
-    'messagebar userlist';
+    'userlist'
+    'chat'
+    'messagebar';
+  @media (min-width: 768px) {
+    grid-template-columns: auto 320px;
+    grid-template-rows: auto 48px;
+    grid-template-areas:
+      'chat userlist'
+      'messagebar userlist';
+  }
 `
 
 const AppLayout = () => {
