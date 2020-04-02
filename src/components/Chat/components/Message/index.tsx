@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import styled from '../../../../theme/styled'
 import MessageModel from '../../../../services/CAPI/models/Message'
 import { CAPI } from '../../../../services/CAPI/interface'
